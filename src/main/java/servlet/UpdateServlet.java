@@ -1,9 +1,9 @@
 package servlet;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 
 import dao.UserDAO;
 import model.User;
@@ -26,12 +26,11 @@ public class UpdateServlet extends HttpServlet {
         user.setPassword(password);
 
         UserDAO.updateUser(user);
-
         response.sendRedirect("viewUsers.jsp");
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.sendRedirect("editUser.jsp");
     }
 }

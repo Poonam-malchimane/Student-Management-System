@@ -1,23 +1,22 @@
-
 package servlet;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import dao.UserDAO;
 import model.User;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Servlet called");
+
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -28,11 +27,10 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
 
         boolean status = UserDAO.registerUser(user);
-
         if (status) {
-            response.getWriter().println("Registration Successful!");
+            response.sendRedirect("login.jsp?success=1");
         } else {
-            response.getWriter().println("Registration Failed!");
+            response.sendRedirect("register.jsp?error=1");
         }
     }
 }

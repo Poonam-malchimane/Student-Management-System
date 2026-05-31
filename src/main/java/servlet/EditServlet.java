@@ -1,9 +1,9 @@
 package servlet;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 
 import dao.UserDAO;
 import model.User;
@@ -17,11 +17,8 @@ public class EditServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String email = request.getParameter("email");
-
         User user = UserDAO.getUserByEmail(email);
-
         request.setAttribute("user", user);
-
         request.getRequestDispatcher("editUser.jsp").forward(request, response);
     }
 }
